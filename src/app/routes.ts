@@ -11,15 +11,15 @@ export const routes: Routes = [
     // canLoad: [AuthGuard],
     data: { preload: false },
   },
-//   {
-//     path: 'coordinador',
-//     loadChildren: () =>
-//       import('../coordinador/coordinador.module').then(
-//         (m) => m.CoordinadorModule
-//       ),
-//     canLoad: [AuthGuard],
-//     data: { preload: false },
-//   },
+  {
+    path: 'visitor',
+    loadChildren: () =>
+      import('./visitor/visitor.module').then(
+        (m) => m.VisitorModule
+      ),
+    // canLoad: [AuthGuard],
+    data: { preload: false },
+  },
 //   {
 //     path: 'profesor',
 //     loadChildren: () =>

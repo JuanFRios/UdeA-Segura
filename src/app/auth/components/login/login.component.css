@@ -1,0 +1,8 @@
+.signin-card{
+    background-color: #f7f7f7;
+        min-width: 300px;
+        max-width: 300px;
+        width: 30%;
+        padding: 10px 40px;
+        margin: 40px auto 25px;
+    }

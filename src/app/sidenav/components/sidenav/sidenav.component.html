@@ -1,1 +1,61 @@
-<p>sidenav works!</p>
+<div class="sidenav-container" [class.is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="sidenav-toolbar-header">
+      <div class="zona-btn-header">
+        <button
+          class="btn-header-menu"
+          mat-icon-button
+          (click)="sidenav.toggle()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="module-name" *ngIf="rolAutenticado && !mobileQuery.matches"
+          >Módulo de {{ rolAutenticado }}</span
+        >
+      </div>
+  
+      <span class="menu-activo"> {{ menuActivo.nombre }}</span>
+  
+      <button
+        class="menu-cuenta"
+        mat-button
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item >
+          Cerrar sesión
+        </button>
+      </mat-menu>
+  
+      <!-- .menu-cuenta -->
+    </mat-toolbar>
+  
+    <mat-sidenav-container
+      class="app-sidenav-container"
+      [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
+    >
+      <mat-sidenav
+        #sidenav
+        class="curfi-sidenav"
+        [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [fixedInViewport]="mobileQuery.matches"
+        fixedTopGap="112"
+      >
+        <mat-nav-list class="curfi-menu-list">
+          <a
+            *ngFor="let menu of listaMenu"
+            routerLink="./{{ menu.ruta }}"
+            routerLinkActive="active"
+            (click)="cambiarMenu(menu.id)"
+          >
+            <li>{{ menu.nombre }}</li>
+          </a>
+        </mat-nav-list>
+      </mat-sidenav>
+  
+      <mat-sidenav-content class="sidenav-content">
+        <ng-container *ngTemplateOutlet="_content"> </ng-container>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>

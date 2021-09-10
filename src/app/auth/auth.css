@@ -1,0 +1,56 @@
+
+    
+.titulo-card{
+    margin: 0 0 3% 0 !important;
+    color: #125333 !important;
+    font-size: 1.7em;
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-align: center;
+}
+    
+.signin-card .mat-input-container{
+    display: block !important;
+}
+.boton-inicio{
+    border: 1px solid #0a351c;
+    color: #fff;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background-color: #0a351c;
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.mat-button[disabled][disabled]{
+    background-color: #d2d2d2;
+    border:none;
+
+}
+.cargando{
+    text-align: center;
+}
+
+.spinner {
+display: table;
+margin: 0 auto;
+}
+
+
+a{
+text-decoration: none;
+color: black;
+/* color: rgb(42, 125, 219); */
+}
+
+@media (max-width: 700px) {
+    .signin-card {
+        min-width: 200px;
+        max-width: 300px;
+        width: 70%;
+    } 
+}

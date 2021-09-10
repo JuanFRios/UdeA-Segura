@@ -3,12 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ERRORES_FORMULARIOS, MENSAJES_VALIDACION } from './validation';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', './../../auth.css']
+  selector: 'app-new-user',
+  templateUrl: './new-user.component.html',
+  styleUrls: ['./new-user.component.css', './../../auth.css']
 })
-export class LoginComponent implements OnInit {
-
+export class NewUserComponent implements OnInit {
   formIncioSesion: FormGroup;
   erroresFormulario = ERRORES_FORMULARIOS;
   mensajesValidacion = MENSAJES_VALIDACION;

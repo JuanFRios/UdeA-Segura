@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule} from '@angular/material/toolbar';
+
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({
@@ -20,7 +20,10 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
     BrowserAnimationsModule,
     CoreModule,
-    MatToolbarModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

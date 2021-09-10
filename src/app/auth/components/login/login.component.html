@@ -1,1 +1,76 @@
-<p>login works!</p>
+<div id="container" class="container center">
+    <mat-card class="signin-card">
+      <div class="card-header">
+        <img src="./../../../../assets/logo-udea-segura.svg" class="main-lock-icon" alt="">
+        <h3 class="titulo-card" [hidden]="cargando">Inicio de Sesión</h3>
+        <span class="flex-spacer"></span>
+      </div>
+      <form
+        novalidate
+        [formGroup]="formIncioSesion"
+        (ngSubmit)="onSubmit()"
+        [hidden]="cargando"
+      >
+        <mat-card-content>
+          <div class="center-text margin-bottom" >
+            <a routerLink="/nuevo-usuario">¿No tienes usuario en esta aplicación?<br><strong>Crea uno aquí</strong></a>
+          </div>
+           
+          <mat-form-field
+            class="full-width"
+          >
+            <input
+              matInput
+              formControlName="nombreUsuario"
+              type="text"
+              name="nombreUsuario"
+              placeholder="Nombre de Usuario"
+              required
+            />
+            <mat-hint>
+              <span [hidden]="!erroresFormulario.nombreUsuario">
+                {{ erroresFormulario.nombreUsuario }}</span
+              >
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field
+            class="full-width"
+          >
+            <input
+              matInput
+              formControlName="clave"
+              type="password"
+              name="nombreUsuario"
+              placeholder="Contraseña"
+              required
+            />
+            <mat-hint>
+              <span [hidden]="!erroresFormulario.clave">
+                {{ erroresFormulario.clave }}</span
+              >
+            </mat-hint>
+          </mat-form-field>
+          
+        </mat-card-content>
+        <mat-card-actions>
+          <span class="flex-spacer"></span>
+          <button
+            type="submit"
+            mat-button
+            class="background-primary boton-inicio"
+            [disabled]="formIncioSesion.invalid"
+          >
+            Iniciar Sesión
+          </button>
+        </mat-card-actions>
+      </form>
+  
+      <div [hidden]="!cargando" class="cargando">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <h4 style="text-align: center;">Iniciando sesión ...</h4>
+      </div>
+      <div *ngIf="errMess" class="error">
+        <p>{{ errMess }}</p>
+      </div>
+    </mat-card>
+  </div>
