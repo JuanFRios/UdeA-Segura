@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from './components/search/search.component';
 
 // import { AuthGuard } from "../auth/auth-guard.service";
@@ -15,7 +15,7 @@ const visitorRoutes: Routes = [
         path: "",
         // canActivateChild: [AuthGuard],
         children: [
-         { path: "usuarios", component: SearchComponent },
+         { path: "espacios", component: SearchComponent },
         //   { path: "materias", component: CMateriasComponent },
         //   { path: "departamentos", component: ADepartamentosComponent },
         //   { path: "semestres", component: ASemestresComponent },

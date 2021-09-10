@@ -1,8 +1,11 @@
-import { Menu } from '../modelos/menu';
+import { Menu } from '../models/menu';
 
 export const MENU_VISITOR = [
-    new Menu(1, "Usuarios", "usuarios"),
-    new Menu(2, "Materias", "materias"),
-    new Menu(3, "Departamentos", "departamentos"),
-    new Menu(4, "Semestres", "semestres"),
-  ];
+    new Menu(1, "Espacios", "espacios"),
+    new Menu(1, "Visitas", "visitas"),
+];
+
+export const MENU_GUARD = [
+    new Menu(1, "Control espacios", "busquedaPersonas"),
+];
+

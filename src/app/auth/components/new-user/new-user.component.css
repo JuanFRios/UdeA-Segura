@@ -2,14 +2,14 @@
     min-height: auto;
 }
 
-.signin-card{
-    background-color: #f7f7f7;
-        min-width: 450px;
-        max-width: 450px;
-        width: 30%;
-        padding: 10px 40px;
-        margin: 40px auto 25px;
-    }
+.signup-card{
+  background-color: #f7f7f7;
+  min-width: 450px;
+  max-width: 450px;
+  width: 30%;
+  padding: 10px 40px;
+  margin: 40px auto 25px;
+}
 
     .filtros,
 .filtros-avanzados {

@@ -5,22 +5,22 @@ import {
   ViewChild,
   ChangeDetectorRef,
   TemplateRef,
-} from "@angular/core";
-import { MediaMatcher } from "@angular/cdk/layout";
-import { MatSidenav } from "@angular/material/sidenav";
-import { Menu } from './../../../modelos/menu';
+} from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material/sidenav';
+import { Menu } from './../../../models/menu';
 import { NavigationExtras, Router } from '@angular/router';
 
 
 @Component({
-  selector: "app-sidenav",
-  templateUrl: "./sidenav.component.html",
-  styleUrls: ["./sidenav.component.css"],
+  selector: 'app-sidenav',
+  templateUrl: './sidenav.component.html',
+  styleUrls: ['./sidenav.component.css'],
 })
 export class SidenavComponent implements OnInit {
   mobileQuery: MediaQueryList;
   nombre_usuario: string;
-  @ViewChild("sidenav", { static: false }) sidenav: MatSidenav;
+  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
   menuActivo: Menu;
   @Input() listaMenu: Menu[];
   rolAutenticado: string;
@@ -36,7 +36,7 @@ export class SidenavComponent implements OnInit {
     private router: Router,
     media: MediaMatcher
   ) {
-    this.mobileQuery = media.matchMedia("(max-width: 600px)");
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     // this.rolAutenticado = this.loginService.obtenerRolDecifrado();

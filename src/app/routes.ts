@@ -12,7 +12,7 @@ export const routes: Routes = [
     data: { preload: false },
   },
   {
-    path: 'visitor',
+    path: 'visitante',
     loadChildren: () =>
       import('./visitor/visitor.module').then(
         (m) => m.VisitorModule
@@ -20,31 +20,4 @@ export const routes: Routes = [
     // canLoad: [AuthGuard],
     data: { preload: false },
   },
-//   {
-//     path: 'profesor',
-//     loadChildren: () =>
-//       import('../profesores/profesores.module').then((m) => m.ProfesoresModule),
-//     canLoad: [AuthGuard],
-//     data: { preload: false },
-//   },
-//   {
-//     path: 'vicedecano',
-//     loadChildren: () =>
-//       import('../vicedecano/vicedecano.module').then((m) => m.VicedecanoModule),
-//     canLoad: [AuthGuard],
-//     data: { preload: false },
-//   },
-//   {
-//     path: 'jefeDepartamento',
-//     loadChildren: () =>
-//       import('../jefe-departamento/jefe-departamento.module').then((m) => m.JefeDepartamentoModule),
-//     canLoad: [AuthGuard],
-//     data: { preload: false },
-//   },
-//   {
-//     path: 'publico',
-//     loadChildren: () =>
-//       import('../publico/publico.module').then((m) => m.PublicoModule),
-//     data: { preload: false },
-//   },
 ];

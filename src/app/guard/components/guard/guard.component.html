@@ -1,1 +1,4 @@
-<p>guard works!</p>
+<app-sidenav [listaMenu]="lista_menu" [content]="content"></app-sidenav>
+<ng-template #content>
+  <router-outlet></router-outlet>
+</ng-template>
