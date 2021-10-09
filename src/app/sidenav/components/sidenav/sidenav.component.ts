@@ -18,6 +18,9 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./sidenav.component.css'],
 })
 export class SidenavComponent implements OnInit {
+
+  role: string;
+
   mobileQuery: MediaQueryList;
   nombre_usuario: string;
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
@@ -39,6 +42,8 @@ export class SidenavComponent implements OnInit {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.role = localStorage.getItem('role');
     // this.rolAutenticado = this.loginService.obtenerRolDecifrado();
   }
   ngOnInit() {
@@ -76,5 +81,10 @@ export class SidenavComponent implements OnInit {
   esRolAutenticado(idRol: number){
     // const rol = +this.loginService.obtenerIdRolAutenticado();
     // return rol === idRol;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['inicio'])
   }
 }

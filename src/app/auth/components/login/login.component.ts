@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserLogin } from 'src/app/models/user';
+import { AuthService } from './../../providers/auth.service';
 import { ERRORES_FORMULARIOS, MENSAJES_VALIDACION } from './validation';
 
 @Component({
@@ -9,7 +12,7 @@ import { ERRORES_FORMULARIOS, MENSAJES_VALIDACION } from './validation';
 })
 export class LoginComponent implements OnInit {
 
-  formIncioSesion: FormGroup;
+  formLogin: FormGroup;
   erroresFormulario = ERRORES_FORMULARIOS;
   mensajesValidacion = MENSAJES_VALIDACION;
   errMess: string;
@@ -18,6 +21,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) {
     this.crearFormulario();
   }
@@ -25,8 +30,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   crearFormulario(): void {
-    this.formIncioSesion = this.fb.group({
-      nombreUsuario: [
+    this.formLogin = this.fb.group({
+      username: [
         '',
         [
           Validators.required,
@@ -34,7 +39,7 @@ export class LoginComponent implements OnInit {
           Validators.maxLength(100),
         ],
       ],
-      clave: [
+      password: [
         '',
         [
           Validators.required,
@@ -42,10 +47,9 @@ export class LoginComponent implements OnInit {
           Validators.maxLength(100),
         ],
       ],
-      rol: ['', [Validators.required]],
     });
 
-    this.formIncioSesion.valueChanges.subscribe((data) =>
+    this.formLogin.valueChanges.subscribe((data) =>
       this.onValueChanged(data)
     );
 
@@ -60,10 +64,10 @@ export class LoginComponent implements OnInit {
    */
   onValueChanged(data?: any) {
     // Si el formulario no ha sido creado retorna nada
-    if (!this.formIncioSesion) {
+    if (!this.formLogin) {
       return;
     }
-    const form = this.formIncioSesion;
+    const form = this.formLogin;
 
     // tslint:disable-next-line:forin
     for (const campo in this.erroresFormulario) {
@@ -86,10 +90,23 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.cargando = true;
-    // let usuario: Usuario;
-    // usuario = this.formIncioSesion.value;
-    // const clave = this.formIncioSesion.get('clave').value;
+    this.cargando = true;
+    let user: UserLogin;
+    user = this.formLogin.value;
+    this.authService.login(user).subscribe((data) => {
+      localStorage.setItem('token', JSON.stringify(data.token));
+      this.authService.renewToken().subscribe((resp) => {
+        localStorage.setItem('token', JSON.stringify(resp.token));
+        localStorage.setItem('role', JSON.stringify(resp.universityRole));
+        if(resp.universityRole === 'Vigilante'){
+          this.router.navigate(['vigilante/busquedaPersonas']);
+        }else {
+          this.router.navigate(['visitante/visitas']);
+        }
+      })
+    });
+
+    // const clave = this.formLogin.get('clave').value;
     // let mensajeError: MensajeError;
 
     // const claveCifrada = this.cifradoService.cifrar(clave);
@@ -97,13 +114,13 @@ export class LoginComponent implements OnInit {
     //   .autenticar(
     //     usuario.nombreUsuario,
     //     claveCifrada,
-    //     +this.formIncioSesion.get('rol').value
+    //     +this.formLogin.get('rol').value
     //   )
     //   .subscribe(
     //     (data) => {
     //       if (!data.jwt) {
     //         this.errMess = 'Usted no posee una cuenta en CURFI.';
-    //         this.formIncioSesion.reset();
+    //         this.formLogin.reset();
     //         this.cargando = false;
     //         return;
     //       }
@@ -115,7 +132,7 @@ export class LoginComponent implements OnInit {
     //         preserveFragment: true,
     //       };
     //       // Según el rol se hace una redirección
-    //       switch (this.formIncioSesion.get('rol').value) {
+    //       switch (this.formLogin.get('rol').value) {
     //         case 1:
     //           redirect = this.loginService.redirectUrl
     //             ? this.loginService.redirectUrl
@@ -158,7 +175,7 @@ export class LoginComponent implements OnInit {
     //       }
 
     //       // Volvemos el formulario a su estado original
-    //       this.formIncioSesion.reset();
+    //       this.formLogin.reset();
     //       this.cargando = false;
     //     }
     //   );

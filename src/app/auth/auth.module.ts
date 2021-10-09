@@ -12,6 +12,8 @@ import { MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewUserComponent } from './components/new-user/new-user.component';
+import { AuthService } from './providers/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [LoginComponent, NewUserComponent],
@@ -27,6 +29,8 @@ import { NewUserComponent } from './components/new-user/new-user.component';
     MatIconModule,
     MatCardModule,
     MatSelectModule,
-  ]
+    HttpClientModule
+  ],
+  providers: [AuthService]
 })
 export class AuthModule { }

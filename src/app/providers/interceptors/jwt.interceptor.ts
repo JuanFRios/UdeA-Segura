@@ -4,12 +4,15 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpResponse,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 
 @Injectable()
-export class HttpTokenInterceptor implements HttpInterceptor {
+export class JwtInterceptor implements HttpInterceptor {
 
   private correo: string;
   private token: string;
@@ -21,15 +24,19 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     this.token = JSON.parse(localStorage.getItem('token'));
+
     if (this.token) {
       request = request.clone({
         setHeaders: {
-          'x-token': `${this.token}`
+          Authorization: `Bearer ${this.token}`
         }
       });
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe(
+      map((event: HttpEvent<any>) => {
+        return event;
+      }));
   }
 
 

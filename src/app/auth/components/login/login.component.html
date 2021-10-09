@@ -7,7 +7,7 @@
       </div>
       <form
         novalidate
-        [formGroup]="formIncioSesion"
+        [formGroup]="formLogin"
         (ngSubmit)="onSubmit()"
         [hidden]="cargando"
       >
@@ -21,7 +21,7 @@
           >
             <input
               matInput
-              formControlName="nombreUsuario"
+              formControlName="username"
               type="text"
               name="nombreUsuario"
               placeholder="Nombre de Usuario"
@@ -38,7 +38,7 @@
           >
             <input
               matInput
-              formControlName="clave"
+              formControlName="password"
               type="password"
               name="nombreUsuario"
               placeholder="Contraseña"
@@ -58,7 +58,7 @@
             type="submit"
             mat-button
             class="background-primary boton-inicio"
-            [disabled]="formIncioSesion.invalid"
+            [disabled]="formLogin.invalid"
           >
             Iniciar Sesión
           </button>

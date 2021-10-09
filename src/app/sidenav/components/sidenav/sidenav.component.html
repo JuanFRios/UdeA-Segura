@@ -9,7 +9,7 @@
           <mat-icon>menu</mat-icon>
         </button>
         <span class="module-name" 
-          >Módulo de visitantes</span
+          >{{role === '"Vigilante"'? 'Módulo de vigilante': 'Módulo de visitantes' }}</span
         >
       </div>
   
@@ -23,7 +23,7 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item >
+        <button mat-menu-item (click)="logout()">
           Cerrar sesión
         </button>
       </mat-menu>

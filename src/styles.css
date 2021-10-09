@@ -2146,6 +2146,18 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
   margin-bottom: 10px;
 }
 
+.snack-error {
+  background: red !important;
+  color: white;
+  font-weight: bold;
+}
+
+.snack-success {
+  background: #2E7D32 !important;
+  color: white;
+  font-weight: bold;
+}
+
 @media (max-width: 1000px) {
     #container,
     .container {
