@@ -1,0 +1,47 @@
+<div style="display: flex; flex-direction: row; margin: 20px 0px;">
+
+  <h1 style="font-size: 30px;">Listado de visitas agendadas</h1>
+  <button mat-mini-fab color="primary" (click)="throughGate()" style="margin: 0px 20px;">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div style="display: flex; justify-content: center;" *ngIf="dataSource.data.length < 1">
+  <p>**Aún no tienes visitas agendadas**</p>
+</div>
+<div class="mat-elevation-z8" *ngIf="dataSource.data.length >= 1">
+
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Place Column -->
+    <ng-container matColumnDef="place">
+      <th mat-header-cell *matHeaderCellDef> Lugar </th>
+      <td mat-cell *matCellDef="let element"> {{element.place.name}} </td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let element"> {{element.appointmentDate|date:'MMM d, y': 'UTC' }} </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Estado </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-icon-button  color="warn" (click)="deleteAppointment(element.aid)">
+          <mat-icon>delete</mat-icon>
+      </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>

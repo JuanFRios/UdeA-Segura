@@ -7,8 +7,10 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule} from '@angular/material/toolbar';
+
 import { AuthModule } from './auth/auth.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './providers/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,13 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
     BrowserAnimationsModule,
     CoreModule,
-    MatToolbarModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

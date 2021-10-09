@@ -1,0 +1,15 @@
+#footer{
+    background: #f3f3f3;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    margin: 0 auto 0 !important;
+    max-width: 1240px !important;
+    width: 94% !important;
+    z-index: 4;
+}
+@media screen and (max-width: 600px) {
+    
+}

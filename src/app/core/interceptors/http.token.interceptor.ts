@@ -21,11 +21,10 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     this.token = JSON.parse(localStorage.getItem('token'));
-
     if (this.token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.token}`
+          'x-token': `${this.token}`
         }
       });
     }

@@ -1,0 +1,30 @@
+<mat-card class="control-space-card">
+    <mat-card-content>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
+
+            <form fxLayout="column" [formGroup]="formPlace"
+                style="width: 100%; display: flex; justify-content: center; margin: 30px">
+                <mat-form-field style="width: 80%;">
+                    <mat-label>Espacio</mat-label>
+                    <mat-select placeholder="Seleccione un espacio" formControlName='place'
+                        (selectionChange)="onSelect()">
+                        <mat-option *ngFor="let space of spaces" [value]="space.pid"> {{space.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+
+            <div *ngIf="placeSelected" style="display: flex; flex-direction: column; align-items: center;">
+
+
+                <circle-progress [percent]="percentOccupation" [radius]="50" [outerStrokeWidth]="8"
+                    [innerStrokeWidth]="6" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'"
+                    [animation]="true" [animationDuration]="300" [subtitle]="'Aforo'">
+                </circle-progress>
+                <h2>Capacidad máxima: {{placeSelected.maxCapacity}}</h2>
+                <h2>Aforo actual: {{placeSelected.currentCapacity}}</h2>
+            </div>
+
+        </div>
+    </mat-card-content>
+</mat-card>
